@@ -15,7 +15,7 @@ if ($route == 'home') {
     $homeController = new \Loann\Controller\HomeController();
     echo $homeController->indexAction();
 } 
-else if ($route == 'categories') {
-    $homeController = new \Loann\Controller\HomeController();
-    echo $homeController->categorieAction();
-}
+// else if ($route == 'categories') {
+//     $homeController = new \Loann\Controller\HomeController();
+//     echo $homeController->categorieAction();
+// }

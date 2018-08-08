@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<table>
+    <tr>
+        <th>Catégories</th>
+        <th>Nombre de messages</th>
+        <th>Date du dernier message</th>
+        <th>Modérateurs</th>
+    </tr>
+    {% set i = 0 %}
+    {% for category in categories %}    
+        <tr>
+            <td>{{ category.name }}</td>
+            <td>{{ messageNumbers[i] }}</td>
+            <td>{{ dates[i] }}</td>
+            <td>{% for moderator in moderators[i] %}
+                <span>{{moderator}}</span>
+                {% endfor %}
+            </td>
+        </tr>
+        {% set i = i + 1 %}
+    {% endfor %}
+
+</table>
+
+
+{% endblock %}

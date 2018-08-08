@@ -7,8 +7,9 @@ use Loann\Model\Manager;
 class CategoryManager extends Manager
 {
 
-    const TABLE = 'Categorie';
+    const TABLE = 'Category';
     const CLASSREF = Category::class;
+    
     /**
      * @return array
      */

@@ -2,7 +2,7 @@
 
 namespace Loann\Model;
 
-class Category
+class Subclass
 {
     /*
      * @var int
@@ -13,18 +13,22 @@ class Category
      * @var string
      */
     private $name;
-    
+
+    /*
+     * @var int
+     */
+    private $category_id;
 
     /**
      * @param mixed $id
-     * @return Category
+     * @return Subclass
      */
     public function getId()
     {
         return $this->id;
     }
 
-    /* 
+    /*
      * @return mixed
      */
     public function getName()
@@ -34,7 +38,7 @@ class Category
 
     /**
      * @param mixed $name
-     * @return Category
+     * @return Subclass
      */
     public function setName($name)
     {
@@ -42,4 +46,12 @@ class Category
         return $this;
     }
 
+    /**
+     * @param mixed $category_id
+     * @return Subclass
+     */
+    public function getCategoryId()
+    {
+        return $this->category_id;
+    }
 }
