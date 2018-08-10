@@ -1,0 +1,65 @@
+/* GENERAL */
+
+.font-size-12 {
+    font-size: 12px;
+}
+
+.font-size-13 {
+    font-size: 13px;
+}
+
+.font-weight-600 {
+    font-weight: 600;
+}
+
+.block {
+    display: block;
+}
+
+.center {
+    text-align: center;
+}
+
+input {
+    display: block;
+    margin: 0 auto;
+}
+
+
+/* HOME PAGE -----------------------------------------------*/
+
+.table {
+    margin: 15vh auto 0 auto;
+}
+
+.table thead th {
+    margin-bottom: 10px;
+    background-color: #212529;
+    color: white;
+    padding-left: 7px;
+    vertical-align: middle;
+}
+
+.table td {
+    padding: 7px;
+    line-height: 15px;
+    vertical-align: middle;
+} 
+
+/* SIGN UP -------------------------------------------------*/
+
+.signup_main_div {
+    text-align: center;
+    border: solid 1px grey;
+    /* height:15vh; */
+    margin: 10vh 10vw;
+    box-shadow: grey 2px 2px;
+}
+
+.signup_h2 {
+    margin: 15px 0 50px 0;
+}
+
+.username_loggedIn {
+    color: white;
+}
