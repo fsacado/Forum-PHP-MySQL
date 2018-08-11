@@ -29,6 +29,19 @@ input {
     color: red;
 }
 
+.modal-footer {
+    border: none;
+}
+
+.modal-header {
+    background-color: #28a745;
+    color: white;
+}
+
+.modal-dialog {
+    max-width: 400px;
+}
+
 
 /* HOME PAGE -----------------------------------------------*/
 
@@ -55,7 +68,6 @@ input {
 .signup_main_div {
     text-align: center;
     border: solid 1px grey;
-    /* height:15vh; */
     margin: 10vh 10vw;
     box-shadow: grey 2px 2px;
 }
@@ -70,6 +82,25 @@ input {
 
 @media(max-width:768px) {
     .signup_h2 {
+        font-size: 25px;
+    }
+}
+
+/* LOG IN ----------------------------------------------------*/
+
+.login_main_div {
+    text-align: center;
+    border: solid 1px grey;
+    margin: 17vh 10vw;
+    box-shadow: grey 2px 2px;
+}
+
+.login_h2 {
+    margin: 15px 0 50px 0;
+}
+
+@media(max-width:768px) {
+    .login_h2 {
         font-size: 25px;
     }
 }

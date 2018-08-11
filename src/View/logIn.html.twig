@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="login_main_div">
+    <h2 class="login_h2">Connexion</h5>
+    {% for error in errors %}
+        <span class="error"><span>&bull;</span> {{ error }}</span> <br>
+    {% endfor %}
+
+    <form class="mt-5" method="POST" action="?route=logInAction">
+        <input type="text" name="logInUsername" placeholder="Pseudo" class="mb-3">
+        <input type="password" name="logInPassword" placeholder="Mot de passe">
+        <input type="submit" name="logInSubmit" value="Valider" class="mt-5 mb-4">
+    </form>
+</div>
+
+{% endblock %}
