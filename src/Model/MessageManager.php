@@ -25,12 +25,13 @@ class MessageManager extends Manager
         return $statement->fetch(\PDO::FETCH_COLUMN, 0); // returns only the count value
     }
 
-    public function findLastAddedMessagePerCategory($category_name)
+    public function findDateAuthorLastAddedMessagePerCategory($category_name)
     {
-        $req = "SELECT " . self::TABLE . ".publication_date FROM " . self::TABLE . "
+        $req = "SELECT " . self::TABLE . ".publication_date, User.username FROM " . self::TABLE . "
                 INNER JOIN Topic ON Topic.id=" . self::TABLE . ".topic_id 
                 INNER JOIN Subclass ON Subclass.id=Topic.subclass_id 
                 INNER JOIN Category ON Category.id=Subclass.category_id 
+                INNER JOIN User ON User.id=" . self::TABLE . ".author_id
                 WHERE Category.name=:name 
                 ORDER BY " . self::TABLE . ".publication_date DESC 
                 LIMIT 1";
@@ -39,7 +40,7 @@ class MessageManager extends Manager
         $statement->bindParam(':name', $category_name);
         $statement->execute();
     
-        return $statement->fetch(\PDO::FETCH_COLUMN, 0);
+        return $statement->fetch(\PDO::FETCH_ASSOC);
 
     }
 }

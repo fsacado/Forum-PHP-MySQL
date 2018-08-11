@@ -19,5 +19,5 @@ class CategoryManager extends Manager
         $statement = $this->pdo->query($req);
         return $statement->fetchAll(\PDO::FETCH_CLASS, self::CLASSREF);
     }
-
+    
 }

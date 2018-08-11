@@ -24,6 +24,11 @@ class User
      */
     private $lastname;
 
+    /*
+     * @var string
+     */
+    private $role;
+
     /**
      * @param mixed $id
      * @return Category
@@ -84,6 +89,24 @@ class User
     public function setLastname($lastname)
     {
         $this->lastname = $lastname;
+        return $this;
+    }
+
+    /*
+     * @return mixed
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param mixed $role
+     * @return User
+     */
+    public function setRole($role = 'user')
+    {
+        $this->role = $role;
         return $this;
     }
 }

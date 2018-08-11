@@ -35,7 +35,33 @@ class UserManager extends Manager
         $statement->execute();
 
         return $statement->fetchAll(\PDO::FETCH_COLUMN);
+    }
 
+    public function findByUsername($username)
+    {
+        $req = "SELECT username FROM " . self::TABLE . "
+                WHERE username = :username";
+
+        $statement = $this->pdo->prepare($req);
+        $statement->bindParam(':username', $username);
+        $statement->execute();
+
+        return $statement->fetch(\PDO::FETCH_COLUMN);
+    }
+
+    public function addNewUser($firstname, $lastname, $username, $password, $role = 'user')
+    {
+        $req = "INSERT INTO " . self::TABLE . "
+                VALUES (NULL, :firstname, :lastname, :username, :role, :password)";
+
+        $statement = $this->pdo->prepare($req);
+        $statement->bindParam(':firstname', $firstname);
+        $statement->bindParam(':lastname', $lastname);
+        $statement->bindParam(':username', $username);
+        $statement->bindParam(':password', $password);
+        $statement->bindParam(':role', $role);
+
+        return $statement->execute();
     }
 
 }

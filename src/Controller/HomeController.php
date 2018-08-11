@@ -3,39 +3,48 @@
 namespace Loann\Controller;
 
 use Loann\Model\MessageManager;
-use \Loann\Model\CategoryManager;
-use \Loann\Model\UserManager;
+use Loann\Model\CategoryManager;
+use Loann\Model\UserManager;
+use Loann\Model\SubclassManager;
 
 class HomeController extends Controller
 {
     public function indexAction()
     {
-
+        
+// var_dump($_SESSION);
         $categoryManager = new CategoryManager();
         $categories = $categoryManager->findAll();
 
+        $subclasses = [];
         $messageNumbers = [];
-        $dates = [];
+        $datesAndAuthor = [];
         $moderators = [];
 
         foreach ($categories as $category) {
+
+            $subclassManager = new SubclassManager();
+            $getSubclasses = $subclassManager->findByCategory($category->getName());
+            $subclasses[] = $getSubclasses;
+
             $messageManager = new MessageManager();
             // set number of messages corresponding to the category
             $getMessageNumbers = $messageManager->findMessageNumberPerCategory($category->getName());
             // retrieve last message's publication_date
-            $getDate = $messageManager->findLastAddedMessagePerCategory($category->getName());
+            $getDate = $messageManager->findDateAuthorLastAddedMessagePerCategory($category->getName());
             // if there's no message number, give value 0 by default
             if (!$getMessageNumbers) {
                 $getMessageNumbers = '0';
             }
             // if there's no date, give value by default
             if (!$getDate) {
-                $getDate = 'Date inconnue';
+                $getDate = 'Renseignement inconnu';
             }
+            
             // set value to array
             $messageNumbers[] = $getMessageNumbers;
             // set value to array
-            $dates[] = $getDate;
+            $datesAndAuthor[] = $getDate;
 
             $userManager = new UserManager();
             // get all moderators for the category
@@ -47,11 +56,15 @@ class HomeController extends Controller
 
         return $this->render('home.html.twig', [
             'categories' => $categories,
+            'subclasses' => $subclasses,
             'messageNumbers' => $messageNumbers,
-            'dates' => $dates,
+            'datesAndAuthor' => $datesAndAuthor,
             'moderators' => $moderators
         ]);
 
     }
 
+    public function categorieAction() {
+        return $this->render('test.html.twig');
+    }
 }

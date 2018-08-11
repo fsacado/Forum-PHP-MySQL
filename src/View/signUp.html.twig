@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="signup_main_div">
+    <h2 class="signup_h2">Sois le bienvenu, nouvel utilisateur !</h2>
+    {% for error in errors %}
+        <span class="error"><span>&bull;</span> {{ error }}</span> <br>
+    {% endfor %}
+
+    <form method="POST" action="?route=signUpAction">
+        <input type="text" name="firstname" placeholder="Prénom" class="my-4" value="{{ formPostData.firstname }}">
+        <input type="text" name="lastname" placeholder="Nom" class="my-4" value="{{ formPostData.lastname }}">
+        <input type="text" name="username" placeholder="Pseudo" class="my-4" value="{{ formPostData.username }}">
+        <input type="password" name="password" placeholder="Mot de passe" class="my-4" value="{{ formPostData.password }}">
+        <input type="password" name="password_repeat" placeholder="Mot de passe (à nouveau)" class="my-4">
+        
+        <input type="submit" name="submit" value="Valider" class="my-5">
+    </form>
+
+</div>
+
+
+
+{% endblock %}

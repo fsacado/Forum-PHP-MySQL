@@ -17,8 +17,10 @@ class Controller
         if (self::$twig === null) {
             $loader = new \Twig_Loader_Filesystem(__DIR__ . '/../View');
             self::$twig = new \Twig_Environment($loader, array(
-                'cache' => false,
+                'cache' => false
             ));
+            // add session so we can access it in Twig
+            self::$twig->addGlobal('session', $_SESSION);
         }
         return self::$twig;
     }
