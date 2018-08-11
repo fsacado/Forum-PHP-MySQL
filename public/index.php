@@ -27,6 +27,14 @@ else if ($route == 'signUpAction') {
     $userController = new \Loann\Controller\UserController();
     echo $userController->signUpAction();
 }
+else if ($route == 'logIn') {
+    $userController = new \Loann\Controller\UserController();
+    echo $userController->showLogInAction();
+}
+else if ($route == 'logInAction') {
+    $userController = new \Loann\Controller\UserController();
+    echo $userController->logInAction();
+}
 else if ($route == 'logOut') {
     $userController = new \Loann\Controller\UserController();
     echo $userController->logOutAction();

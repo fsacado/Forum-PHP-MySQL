@@ -40,7 +40,7 @@ class UserManager extends Manager
     public function findByUsername($username)
     {
         $req = "SELECT username FROM " . self::TABLE . "
-                WHERE username = :username";
+                WHERE username LIKE BINARY :username"; // LIKE BINARY as for case sensitive
 
         $statement = $this->pdo->prepare($req);
         $statement->bindParam(':username', $username);
@@ -52,7 +52,7 @@ class UserManager extends Manager
     public function addNewUser($firstname, $lastname, $username, $password, $role = 'user')
     {
         $req = "INSERT INTO " . self::TABLE . "
-                VALUES (NULL, :firstname, :lastname, :username, :role, :password)";
+                VALUES (NULL, :username, :firstname, :lastname, :role, :password)";
 
         $statement = $this->pdo->prepare($req);
         $statement->bindParam(':firstname', $firstname);
@@ -62,6 +62,18 @@ class UserManager extends Manager
         $statement->bindParam(':role', $role);
 
         return $statement->execute();
+    }
+
+    public function findPasswordByUsername($username)
+    {
+        $req = "SELECT password FROM " . self::TABLE . "
+                WHERE username LIKE BINARY :username";
+
+        $statement = $this->pdo->prepare($req);
+        $statement->bindParam(':username', $username);
+        $statement->execute();
+
+        return $statement->fetch(\PDO::FETCH_COLUMN);
     }
 
 }

@@ -51,9 +51,7 @@ class UserController extends Controller
         if ($errors) {
             return $this->showSignUpAction($errors, $_POST);
         } else {
-            // setting post values to session
-            $_SESSION['firstname'] = $firstname;
-            $_SESSION['lastname'] = $lastname;
+            // setting post values to session;
             $_SESSION['username'] = $username;
 
             // insert new user into SQL
@@ -61,6 +59,40 @@ class UserController extends Controller
         }
 
         return header("Location:?route=home");
+    }
+
+    public function showLogInAction($errors = null)
+    {
+        return $this->render('logIn.html.twig', [
+            'errors' => $errors
+        ]);
+    }
+
+    public function logInAction()
+    {
+        // setting variables to post values
+        $username = $_POST['logInUsername'];
+        $password = $_POST['logInPassword'];
+
+        $userManager = new UserManager;
+        // get the user's password from MySQL
+        $getPassword = $userManager->findPasswordByUsername($username);
+
+        $errors = [];
+
+        if ($getPassword) { // if username is correct
+            if ($password == $getPassword) { // if given password and MySQL password are the same
+                $_SESSION['username'] = $username; // set username to session
+
+                return header('Location:?route=home'); 
+            } else {
+                $errors[] = "Le mot de passe est incorrect";
+            }
+        } else {
+            $errors[] = "Ce pseudo n'existe pas";
+        }
+
+        return $this->showLogInAction($errors);
     }
 
     public function logOutAction()
