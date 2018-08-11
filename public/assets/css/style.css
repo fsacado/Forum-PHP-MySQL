@@ -25,6 +25,10 @@ input {
     margin: 0 auto;
 }
 
+.error {
+    color: red;
+}
+
 
 /* HOME PAGE -----------------------------------------------*/
 
@@ -62,4 +66,10 @@ input {
 
 .username_loggedIn {
     color: white;
+}
+
+@media(max-width:768px) {
+    .signup_h2 {
+        font-size: 25px;
+    }
 }
