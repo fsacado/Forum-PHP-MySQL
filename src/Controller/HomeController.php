@@ -50,7 +50,6 @@ class HomeController extends Controller
             $getModerators = $userManager->findModeratorsByCategory($category->getName());
             // set them to the array
             $moderators[] = $getModerators;
-
         }
 
         return $this->render('home.html.twig', [
@@ -63,7 +62,4 @@ class HomeController extends Controller
 
     }
 
-    public function categorieAction() {
-        return $this->render('test.html.twig');
-    }
 }

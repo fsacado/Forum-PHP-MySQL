@@ -19,6 +19,14 @@
             <td>{{ topic }}</td>
             <td class="center">{{ authors[i] }}</td>
             <td class="center">{{ messageNumbers[i] }}</td>
+            <td class="center">
+                <span class="font-size-12">{{ lastDateAuthor[i]['publication_date'] }}</span>
+                {% if lastDateAuthor[i]['username'] %}
+                    <span class="font-size-12 font-weight-600 block">par {{ lastDateAuthor[i]['username'] }}</span>
+                {% else %}
+                    <span class="font-size-12 block">{{ lastDateAuthor[i] }}</span>  
+                {% endif %}
+            </td>
         </tr>
         {% set i = i + 1 %}
     {% endfor %}

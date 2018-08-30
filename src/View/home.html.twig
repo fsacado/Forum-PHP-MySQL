@@ -27,11 +27,18 @@
                 <span class="font-size-12">{{ datesAndAuthor[i]['publication_date'] }}</span>
                 {% if datesAndAuthor[i]['username'] %}
                     <span class="font-size-12 font-weight-600 block">par {{ datesAndAuthor[i]['username'] }}</span>    
+                {% else %}
+                    <span class="font-size-12 block">{{ datesAndAuthor[i] }}</span>
                 {% endif %}
             </td>
-            <td class="center">{% for moderator in moderators[i] %}
-                <span class="font-size-12">{{ moderator }}</span>
-                {% endfor %}
+            <td class="center">
+                {% if moderators[i] %}
+                    {% for moderator in moderators[i] %}
+                        <span class="font-size-12">{{ moderator }}</span>
+                    {% endfor %}
+                {% else %}
+                    <span class="font-size-12">Pas de modérateur pour le moment</span>
+                {% endif %}
             </td>
         </tr>
         {% set i = i + 1 %}
