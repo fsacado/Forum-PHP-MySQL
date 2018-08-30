@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    <table class="table table-striped table-bordered">
+    <thead>
+        <tr class="font-size-13">
+            <th scope="col">Sujet</th>
+            <th scope="col" class="center">Auteur du sujet</th>
+            <th scope="col" class="center">Nombre de réponses</th>
+            <th scope="col" class="center">Date du dernier message</th>
+        </tr>
+    </thead>
+    {% set i = 0 %}
+    <tbody>
+    {% for topic in topics %}   
+        <tr scope="row">
+            <td>{{ topic }}</td>
+            <td class="center">{{ authors[i] }}</td>
+            <td class="center">{{ messageNumbers[i] }}</td>
+        </tr>
+        {% set i = i + 1 %}
+    {% endfor %}
+    </tbody>
+
+</table>
+
+
+
+{% endblock %}

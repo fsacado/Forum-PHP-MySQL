@@ -15,7 +15,7 @@
     <tbody>
     {% for category in categories %}    
         <tr scope="row">
-            <td><span class="font-weight-600">{{ category.name }}</span>
+            <td><a href="?route=category&name={{ category.name }}"><span class="font-weight-600">{{ category.name }}</span></a>
                 <div>
                     {% for subclass in subclasses[i] %}
                         <span class="font-size-12">{{ subclass }}</span>

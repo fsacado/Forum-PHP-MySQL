@@ -39,6 +39,11 @@ else if ($route == 'logOut') {
     $userController = new \Loann\Controller\UserController();
     echo $userController->logOutAction();
 }
+else if ($route == 'category') {
+    $categoryController = new \Loann\Controller\CategoryController();
+    echo $categoryController->indexAction();
+}
+
 
 
 

@@ -25,6 +25,20 @@ class MessageManager extends Manager
         return $statement->fetch(\PDO::FETCH_COLUMN, 0); // returns only the count value
     }
 
+    public function findMessageNumberPerTopic($topic_title)
+    {
+        $req =  "SELECT COUNT(*) AS message_number FROM Message 
+                WHERE topic_id=(
+                    SELECT id FROM Topic WHERE title=:title
+                )";
+
+        $statement = $this->pdo->prepare($req);
+        $statement->bindParam(':title', $topic_title);
+        $statement->execute();
+
+        return $statement->fetch(\PDO::FETCH_COLUMN, 0);
+    }
+
     public function findDateAuthorLastAddedMessagePerCategory($category_name)
     {
         $req = "SELECT " . self::TABLE . ".publication_date, User.username FROM " . self::TABLE . "

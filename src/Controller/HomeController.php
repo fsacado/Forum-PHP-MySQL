@@ -12,7 +12,6 @@ class HomeController extends Controller
     public function indexAction()
     {
         
-// var_dump($_SESSION);
         $categoryManager = new CategoryManager();
         $categories = $categoryManager->findAll();
 
