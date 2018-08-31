@@ -34,4 +34,19 @@ class TopicManager extends Manager
         return $statement->fetch(\PDO::FETCH_COLUMN, 0);
     }
 
+    public function findMessagesByTopic($title)
+    {
+        $req = "SELECT Message.content, Message.publication_date, User.username FROM Message
+                INNER JOIN User ON User.id=Message.author_id 
+                INNER JOIN ". self::TABLE . " ON " . self::TABLE . ".id=Message.topic_id 
+                WHERE " . self::TABLE . ".title=:title
+                ORDER BY Message.publication_date ASC";
+
+        $statement = $this->pdo->prepare($req);
+        $statement->bindParam(':title', $title);
+        $statement->execute();
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
 }

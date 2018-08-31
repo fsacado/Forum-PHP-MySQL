@@ -2,17 +2,18 @@
 
 namespace Loann\Controller;
 
-use Loann\Model\CategoryManager;
-use Loann\Model\MessageManager;
+use Loann\Controller\Controller;
+use Loann\Model\SubclassManager;
 use Loann\Model\TopicManager;
+use Loann\Model\MessageManager;
 
-class CategoryController extends Controller
+class SubclassController extends Controller
 {
     public function indexAction()
     {
-        $categoryName = $_GET['name'];
+        $subclassName = $_GET['name'];
 
-        $categoryManager = new CategoryManager();
+        $subclassManager = new SubclassManager();
         $topicManager = new TopicManager();
         $messageManager = new MessageManager();
 
@@ -20,7 +21,7 @@ class CategoryController extends Controller
         $messageNumbers = [];
         $lastMessageDatesAuthors = [];
 
-        $topics = $categoryManager->findTopics($categoryName);
+        $topics = $subclassManager->findTopics($subclassName);
 
         foreach ($topics as $topic) {
             // find the topic's author and store it in the array
@@ -42,7 +43,7 @@ class CategoryController extends Controller
             $lastMessageDatesAuthors[] = $getDate;
         }
 
-        return $this->render('topics.html.twig', [
+        return $this->render('subclass.html.twig', [
             'topics' => $topics,
             'authors' => $authors,
             'messageNumbers' => $messageNumbers,

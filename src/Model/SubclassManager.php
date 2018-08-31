@@ -35,4 +35,17 @@ class SubclassManager extends Manager
         return $statement->fetchAll(\PDO::FETCH_COLUMN);
     }
 
+    public function findTopics($subclass_name)
+    {
+        $req = "SELECT Topic.title FROM Topic
+                INNER JOIN " . self::TABLE . " ON Subclass.id=Topic.subclass_id
+                WHERE " . self::TABLE . ".name=:subclass_name";
+
+        $statement = $this->pdo->prepare($req);
+        $statement->bindParam(':subclass_name', $subclass_name);
+        $statement->execute();
+
+        return $statement->fetchAll(\PDO::FETCH_COLUMN);
+    }
+
 }
