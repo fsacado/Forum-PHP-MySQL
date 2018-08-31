@@ -18,14 +18,14 @@
             <td><a href="?route=category&name={{ category.name }}"><span class="font-weight-600">{{ category.name }}</span></a>
                 <div>
                     {% for subclass in subclasses[i] %}
-                        <span class="font-size-12">{{ subclass }}</span>
+                        <span class="font-size-12"><a href="?route=subclass&name={{ subclass }}" class="link_subclass">{{ subclass }}</a></span>
                     {% endfor %}
                 </div>
             </td>
             <td class="center">{{ messageNumbers[i] }}</td>
             <td class="center">
-                <span class="font-size-12">{{ datesAndAuthor[i]['publication_date'] }}</span>
-                {% if datesAndAuthor[i]['username'] %}
+                {% if datesAndAuthor[i]['username'] and datesAndAuthor[i]['publication_date'] %}
+                    <span class="font-size-12">{{ datesAndAuthor[i]['publication_date']|date("d-m-Y H:i") }}</span>
                     <span class="font-size-12 font-weight-600 block">par {{ datesAndAuthor[i]['username'] }}</span>    
                 {% else %}
                     <span class="font-size-12 block">{{ datesAndAuthor[i] }}</span>

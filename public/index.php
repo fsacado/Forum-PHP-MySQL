@@ -43,11 +43,15 @@ else if ($route == 'category') {
     $categoryController = new \Loann\Controller\CategoryController();
     echo $categoryController->indexAction();
 }
+else if ($route == 'topic') {
+    $topicController = new \Loann\Controller\TopicController();
+    echo $topicController->indexAction();
+}
+else if ($route == 'subclass') {
+    $subclassController = new \Loann\Controller\SubclassController();
+    echo $subclassController->indexAction();
+}
 
 
 
 
-// else if ($route == 'categories') {
-//     $homeController = new \Loann\Controller\HomeController();
-//     echo $homeController->categorieAction();
-// }

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr class="font-size-13">
+            <th scope="col" class="center col-2">Auteur</th>
+            <th scope="col" class="center col-10">Sujet : {{ topicName }}</th>
+        </tr>
+    </thead>
+    {% set i = 0 %}
+    <tbody>
+    {% for message in messages %}   
+        <tr scope="row">
+            <td class="font-size-13 font-weight-600">{{ message.username }}</td>
+            <td class="font-size-14">
+                <span class="font-size-11">Posté le {{ message.publication_date|date("d-m-Y") }} à {{ message.publication_date|date("H:i") }}</span>
+            <hr class="mt-1">
+            {{ message.content }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+
+</table>
+
+
+{% endblock %}
